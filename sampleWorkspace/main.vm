@@ -1,0 +1,26 @@
+function fib x
+load_local x
+load_const 2
+cmpGT
+branchT 6
+load_const 1
+return
+load_local x
+load_const 2
+sub
+call fib
+load_local x
+load_const 1
+sub
+call fib
+add
+return
+function main
+load_const 3
+store_local z
+load_const 5
+call fib
+load_const 7
+call fib
+store_local y
+store_local x
