@@ -1,0 +1,3 @@
+function main
+load_const 3
+store_local x

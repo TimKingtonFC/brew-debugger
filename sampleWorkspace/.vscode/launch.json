@@ -7,9 +7,9 @@
 
         {
             "type": "vm",
-            "request": "attach",
+            "request": "launch",
             "name": "VM Debug",
-            "projectName": "${workspaceFolder}/main.vm",
+            "projectName": "${workspaceFolder}\\main.vm",
             "debugServer": 8888,
             "stopOnEntry": true
         }

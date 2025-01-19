@@ -21,8 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
           vscode.debug.startDebugging(undefined, {
             type: "vm",
             name: "Debug File",
-            request: "attach",
-            program: "thisisdumb",
+            request: "launch",
             projectName: targetResource.fsPath,
             stopOnEntry: true,
             debugServer: 8888,
@@ -191,19 +190,11 @@ class VMDebugConfigurationProvider
       if (editor && editor.document.languageId === "timkvm") {
         config.type = "vm";
         config.name = "Launch";
-        config.request = "attach";
-        config.program = "${file}";
+        config.request = "launch";
+        config.projectName = "${file}";
         config.stopOnEntry = true;
         config.debugServer = 8888;
       }
-    }
-
-    if (!config.program) {
-      return vscode.window
-        .showInformationMessage("Cannot find a program to debug")
-        .then((_) => {
-          return undefined; // abort launch
-        });
     }
 
     return config;

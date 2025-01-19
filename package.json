@@ -124,7 +124,7 @@
         "program": "./out/debugAdapter.js",
         "runtime": "node",
         "configurationAttributes": {
-          "attach": {
+          "launch": {
             "required": [
               "projectName",
               "debugServer"

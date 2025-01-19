@@ -1,10 +1,15 @@
+# Calculates fibonacci number x
 function fib x
+
+# if x <= 2 return 1
 load_local x
 load_const 2
 cmpGT
 branchT 6
 load_const 1
 return
+
+# return fib(x - 2) + fib(x - 1)
 load_local x
 load_const 2
 sub
@@ -15,9 +20,14 @@ sub
 call fib
 add
 return
+
 function main
+
+# z = 3
 load_const 3
 store_local z
+
+# x,y = fib(5), fib(7)
 load_const 5
 call fib
 load_const 7
