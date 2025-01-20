@@ -26,6 +26,8 @@ function main
 # z = 3
 load_const 3
 store_local z
+load_const 4
+store_local z
 
 # x,y = fib(5), fib(7)
 load_const 5

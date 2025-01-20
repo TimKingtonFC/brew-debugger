@@ -59,9 +59,7 @@
   "main": "./dist/extension.js",
   "browser": "./dist/web-extension.js",
   "activationEvents": [
-    "onDebugResolve:vm-debug",
-    "onDebugDynamicConfigurations:vm-debug",
-    "onCommand:extension.vm-debug.getProgramName"
+    "onDebugResolve:vm"
   ],
   "workspaceTrust": {
     "request": "never"
@@ -69,7 +67,7 @@
   "contributes": {
     "languages": [
       {
-        "id": "timkvm",
+        "id": "vmlang",
         "extensions": [
           ".vm"
         ]
@@ -79,20 +77,14 @@
       "editor/title/run": [
         {
           "command": "extension.vm-debug.debugEditorContents",
-          "when": "resourceLangId == timkvm",
+          "when": "resourceLangId == vmlang",
           "group": "navigation@2"
         }
       ],
       "commandPalette": [
         {
           "command": "extension.vm-debug.debugEditorContents",
-          "when": "resourceLangId == timkvm"
-        }
-      ],
-      "debug/variables/context": [
-        {
-          "command": "extension.vm-debug.toggleFormatting",
-          "when": "debugType == 'vm-debug' && debugProtocolVariableMenuContext == 'simple'"
+          "when": "resourceLangId == vmlang"
         }
       ]
     },
@@ -103,40 +95,34 @@
         "category": "VM Debug",
         "enablement": "!inDebugMode",
         "icon": "$(debug-alt)"
-      },
-      {
-        "command": "extension.vm-debug.toggleFormatting",
-        "title": "Toggle between decimal and hex formatting"
       }
     ],
     "breakpoints": [
       {
-        "language": "timkvm"
+        "language": "vmlang"
       }
     ],
     "debuggers": [
       {
         "type": "vm",
         "languages": [
-          "timkvm"
+          "vmlang"
         ],
         "label": "VM Debug",
-        "program": "./out/debugAdapter.js",
-        "runtime": "node",
         "configurationAttributes": {
           "launch": {
             "required": [
               "projectName",
-              "debugServer"
+              "port"
             ],
             "properties": {
               "projectName": {
                 "type": "string",
-                "description": "Absolute path to the VM file to debug.",
+                "description": "Absolute path to the VM file or folder to debug.",
                 "default": "${workspaceFolder}/main.vm"
               },
-              "debugServer": {
-                "type": "port",
+              "port": {
+                "type": "integer",
                 "description": "Listen port of VM host",
                 "default": 8888
               },
@@ -144,54 +130,24 @@
                 "type": "boolean",
                 "description": "Automatically stop after launch.",
                 "default": true
-              },
-              "trace": {
-                "type": "boolean",
-                "description": "Enable logging of the Debug Adapter Protocol.",
-                "default": true
-              },
-              "compileError": {
-                "type": "string",
-                "description": "Simulates a compile error in 'launch' request.",
-                "enum": [
-                  "default",
-                  "show",
-                  "hide"
-                ],
-                "enumDescriptions": [
-                  "default: show fake compile error to user",
-                  "show fake compile error to user",
-                  "do not show fake compile error to user"
-                ]
               }
             }
           }
         },
-        "initialConfigurations": [
-          {
-            "type": "vm",
-            "request": "launch",
-            "name": "Ask for file name",
-            "program": "${workspaceFolder}/${command:AskForProgramName}",
-            "stopOnEntry": true
-          }
-        ],
         "configurationSnippets": [
           {
             "label": "VM Debug: Launch",
-            "description": "A new configuration for 'debugging' a user selected vm file.",
+            "description": "A new configuration for debugging a vm file.",
             "body": {
               "type": "vm",
               "request": "launch",
-              "name": "Ask for file name",
-              "program": "^\"\\${workspaceFolder}/\\${command:AskForProgramName}\"",
+              "name": "Debug VM file",
+              "projectName": "^\"\\${workspaceFolder}/main.vm\"",
+              "port": 8888,
               "stopOnEntry": true
             }
           }
-        ],
-        "variables": {
-          "AskForProgramName": "extension.vm-debug.getProgramName"
-        }
+        ]
       }
     ]
   }
