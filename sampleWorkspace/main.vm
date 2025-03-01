@@ -1,38 +1,24 @@
-# Calculates fibonacci number x
-function fib x
+function int fib x
+0: iload 0
+1: push 2
+2: if_icmpgt 5
+3: push 1
+4: return
+5: iload 0
+6: push 2
+7: isub
+8: invokestatic Main.fib
+9: iload 0
+10: push 1
+11: isub
+12: invokestatic Main.fib
+13: iadd
+14: return
 
-# if x <= 2 return 1
-load_local x
-load_const 2
-cmpGT
-branchT 6
-load_const 1
-return
-
-# return fib(x - 2) + fib(x - 1)
-load_local x
-load_const 2
-sub
-call fib
-load_local x
-load_const 1
-sub
-call fib
-add
-return
-
-function main
-
-# z = 3
-load_const 3
-store_local z
-load_const 4
-store_local z
-
-# x,y = fib(5), fib(7)
-load_const 5
-call fib
-load_const 7
-call fib
-store_local y
-store_local x
+function void main
+push 5
+invokestatic Main.fib
+push 7
+invokestatic Main.fib
+istore 1
+istore 0

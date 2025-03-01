@@ -71,20 +71,26 @@
         "extensions": [
           ".vm"
         ]
+      },
+      {
+        "id": "vmasm",
+        "extensions": [
+          ".s"
+        ]
       }
     ],
     "menus": {
       "editor/title/run": [
         {
           "command": "extension.vm-debug.debugEditorContents",
-          "when": "resourceLangId == vmlang",
+          "when": "resourceLangId == vmlang || resourceLangId == vmasm",
           "group": "navigation@2"
         }
       ],
       "commandPalette": [
         {
           "command": "extension.vm-debug.debugEditorContents",
-          "when": "resourceLangId == vmlang"
+          "when": "resourceLangId == vmlang || resourceLangId == vmasm"
         }
       ]
     },
@@ -100,13 +106,17 @@
     "breakpoints": [
       {
         "language": "vmlang"
+      },
+      {
+        "language": "vmasm"
       }
     ],
     "debuggers": [
       {
         "type": "vm",
         "languages": [
-          "vmlang"
+          "vmlang",
+          "vmasm"
         ],
         "label": "VM Debug",
         "configurationAttributes": {

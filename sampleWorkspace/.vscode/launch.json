@@ -8,7 +8,7 @@
             "type": "vm",
             "request": "launch",
             "name": "Debug VM file",
-            "projectName": "${workspaceFolder}/main.vm",
+            "projectName": "${workspaceFolder}/newarray.s",
             "stopOnEntry": true,
             "port": 8888
         }
