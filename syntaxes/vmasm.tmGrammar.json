@@ -1,0 +1,51 @@
+{
+  "scopeName": "source.vmasm",
+  "fileTypes": [".s"],
+  "patterns": [
+    {
+      "include": "#labels"
+    },
+    {
+      "include": "#instructions"
+    },
+    {
+      "include": "#registers"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "labels": {
+      "name": "entity.name.label.vmasm",
+      "match": "^[a-zA-Z_]\\w*:"
+    },
+    "instructions": {
+      "name": "keyword.control.vmasm",
+      "match": "\\b(jmp|ret|nop|call|je|jne|jg|jl|jge|jle|jz|int|push|pop|mov|lea|add|sub|imul|idiv|cmp)\\b"
+    },
+    "registers": {
+      "name": "variable.language.register",
+      "match": "\\b(eip|eax|ebx|ecx|edx|esi|edi|esp|ebp)\\b"
+    },
+    "numbers": {
+      "name": "constant.numeric",
+      "match": "\\b(0x[0-9A-Fa-f]+|\\d+)\\b"
+    },
+    "comments": {
+      "name": "comment.line.number-sign",
+      "match": "#.*$"
+    },
+    "strings": {
+      "name": "string.quoted.double",
+      "begin": "\"",
+      "end": "\""
+    }
+  }
+}

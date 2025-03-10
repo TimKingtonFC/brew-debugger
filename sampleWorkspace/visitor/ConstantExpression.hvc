@@ -1,0 +1,7 @@
+class ConstantExpression {
+  int value;
+
+  void init(int value) {
+    this.value = value;
+  }
+}

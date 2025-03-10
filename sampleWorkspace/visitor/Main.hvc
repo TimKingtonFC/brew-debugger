@@ -1,0 +1,6 @@
+class Main {
+  static void main() {
+    ConstantExpression e;
+    e = new ConstantExpression(42);
+  }
+}

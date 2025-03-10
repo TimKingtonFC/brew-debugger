@@ -77,20 +77,43 @@
         "extensions": [
           ".s"
         ]
+      },
+      {
+        "id": "vmhvc",
+        "extensions": [
+          ".hvc"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vmlang",
+        "scopeName": "source.vmlang",
+        "path": "./syntaxes/vmlang.tmGrammar.json"
+      },
+      {
+        "language": "vmasm",
+        "scopeName": "source.vmasm",
+        "path": "./syntaxes/vmasm.tmGrammar.json"
+      },
+      {
+        "language": "vmhvc",
+        "scopeName": "source.vmhvc",
+        "path": "./syntaxes/vmhvc.tmGrammar.json"
       }
     ],
     "menus": {
       "editor/title/run": [
         {
           "command": "extension.vm-debug.debugEditorContents",
-          "when": "resourceLangId == vmlang || resourceLangId == vmasm",
+          "when": "resourceLangId == vmlang || resourceLangId == vmasm || resourceLangId == vmhvc",
           "group": "navigation@2"
         }
       ],
       "commandPalette": [
         {
           "command": "extension.vm-debug.debugEditorContents",
-          "when": "resourceLangId == vmlang || resourceLangId == vmasm"
+          "when": "resourceLangId == vmlang || resourceLangId == vmasm || resourceLangId == vmhvc"
         }
       ]
     },
@@ -109,6 +132,9 @@
       },
       {
         "language": "vmasm"
+      },
+      {
+        "language": "vmhvc"
       }
     ],
     "debuggers": [
@@ -116,7 +142,8 @@
         "type": "vm",
         "languages": [
           "vmlang",
-          "vmasm"
+          "vmasm",
+          "vmhvc"
         ],
         "label": "VM Debug",
         "configurationAttributes": {

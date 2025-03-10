@@ -18,6 +18,7 @@ function int fib x
 function void main
 push 5
 invokestatic Main.fib
+
 push 7
 invokestatic Main.fib
 istore 1

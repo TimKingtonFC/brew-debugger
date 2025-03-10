@@ -1,0 +1,22 @@
+class Main {
+
+    static int foo(int a) {
+      return a + 2;
+    }
+
+    static void bar() {
+      int x;
+      x = 3;
+    }
+
+    static void main() {
+        new Main();
+        bar();
+        int x, y;
+        x = 3;
+
+        y = 5;
+        x = foo(x) +
+          foo(y);
+    }
+}

@@ -1,0 +1,51 @@
+{
+  "scopeName": "source.vmlang",
+  "fileTypes": [".s"],
+  "patterns": [
+    {
+      "include": "#labels"
+    },
+    {
+      "include": "#instructions"
+    },
+    {
+      "include": "#registers"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "labels": {
+      "name": "entity.name.label.vmlang",
+      "match": "^\\d+:"
+    },
+    "instructions": {
+      "name": "keyword.control.vmlang",
+      "match": "\\b(iadd|isub|imul|idiv|ifeq|if_icmpeq|if_icmpne|if_icmplt|if_icmple|if_icmpgt|if_icmpge|push|iload|istore|goto|invokestatic|return|multinewarray|function|int|void)\\b"
+    },
+    "registers": {
+      "name": "variable.language.register",
+      "match": "\\b(eip|eax|ebx|ecx|edx|esi|edi|esp|ebp)\\b"
+    },
+    "numbers": {
+      "name": "constant.numeric",
+      "match": "\\b(0x[0-9A-Fa-f]+|\\d+)\\b"
+    },
+    "comments": {
+      "name": "comment.line.number-sign",
+      "match": "#.*$"
+    },
+    "strings": {
+      "name": "string.quoted.double",
+      "begin": "\"",
+      "end": "\""
+    }
+  }
+}
