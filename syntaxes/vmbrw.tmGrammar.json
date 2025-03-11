@@ -4,7 +4,7 @@
     "The source location lists https://github.com/atom/language-java/blob/29f977dc42a7e2568b39bb6fb34c4ef108eb59b3/LICENSE.md as the original repository. It is therefore licensed under MIT."
   ],
   "name": "Java",
-  "scopeName": "source.vmhvc",
+  "scopeName": "source.vmbrw",
   "patterns": [
     {
       "begin": "\\b(package)\\b\\s*",

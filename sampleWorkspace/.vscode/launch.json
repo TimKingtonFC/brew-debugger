@@ -9,7 +9,6 @@
             "request": "launch",
             "name": "Debug VM file",
             "projectName": "${workspaceFolder}/visitor",
-            "stopOnEntry": true,
             "port": 8888
         }
 
