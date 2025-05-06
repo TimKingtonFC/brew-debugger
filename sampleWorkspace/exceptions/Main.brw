@@ -1,0 +1,39 @@
+class Main {
+    static int foo() {
+        try {
+            int a = 2;
+            return 21;
+            int b = 3;
+        } finally {
+            int z = 3;
+        }
+    }
+
+    static void main() {
+        int tot;
+        for (int s = 0;
+         s < 3;
+         s++) {
+            b = b + 2;
+        }
+
+        Integer i = new Integer(13);
+        int h = i.intValue();
+        try {
+        // do a thing
+            int a = 1;
+            try {
+                int c = foo(); // cool
+            } finally {
+                // great
+                int b = 3;
+            }
+        } catch (IOException e) {
+            int z = 2;
+        } catch (Exception e2) {
+            int x = 2;
+        } finally {
+            int y = 3;
+        }
+    }
+}

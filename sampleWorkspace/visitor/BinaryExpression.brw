@@ -1,0 +1,23 @@
+class BinaryExpression extends Expression {
+    Expression left;
+    Operator op;
+    Expression right;
+
+    void init(Expression left, Operator op, Expression right) {
+        this.left = left;
+        this.op = op;
+        this.right = right;
+    }
+
+    Operator getOperator() {
+        return op;
+    }
+
+    void accept(Visitor v) {
+        v.preVisitBin(this);
+        left.accept(v);
+        v.visitBin(this);
+        right.accept(v);
+        v.postVisitBin(this);
+    }
+}

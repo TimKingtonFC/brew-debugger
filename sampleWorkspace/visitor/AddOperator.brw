@@ -1,0 +1,5 @@
+class AddOperator extends Operator {
+    int apply(int x, int y) {
+        return x + y;
+    }
+}

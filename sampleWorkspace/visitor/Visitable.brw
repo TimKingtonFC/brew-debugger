@@ -1,0 +1,4 @@
+class Visitable {
+    void accept(Visitor visitor) {
+    }
+}

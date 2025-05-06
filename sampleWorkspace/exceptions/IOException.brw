@@ -1,0 +1,5 @@
+class IOException extends Exception {
+    void init(String msg) {
+        super(msg);
+    }
+}

@@ -1,0 +1,10 @@
+class Visitor {
+    void preVisitBin(BinaryExpression expr) {
+    }
+    void visitBin(BinaryExpression expr) {
+    }
+    void postVisitBin(BinaryExpression expr) {
+    }
+    void visitConst(ConstantExpression expr) {
+    }
+}

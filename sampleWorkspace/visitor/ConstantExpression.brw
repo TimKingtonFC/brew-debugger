@@ -1,7 +1,19 @@
-class ConstantExpression {
-  int value;
+class ConstantExpression extends Expression {
+    int value;
 
-  void init(int value) {
-    this.value = value;
-  }
+    void init(int value) {
+        this.value = value;
+    }
+
+    int getValue() {
+        return value;
+    }
+
+    void accept(Visitor v) {
+        v.visitConst(this);
+    }
+
+    String toString() {
+        return "" + value;
+    }
 }

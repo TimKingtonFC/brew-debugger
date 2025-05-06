@@ -1,0 +1,22 @@
+class ComputeVisitor extends Visitor {
+    Stack stack;
+
+    void init() {
+        stack = new Stack();
+    }
+
+    void postVisitBin(BinaryExpression expr) {
+        int x, y;
+        y = stack.pop();
+        x = stack.pop();
+        stack.push(expr.getOperator().apply(x, y));
+    }
+
+    void visitConst(ConstantExpression expr) {
+        stack.push(expr.getValue());
+    }
+
+    int getResult() {
+        return stack.pop();
+    }
+}

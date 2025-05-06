@@ -1,0 +1,19 @@
+class Stack {
+    int[] data;
+    int size;
+
+    void init() {
+        this.data = new int[50];
+        this.size = 0;
+    }
+
+    void push(int value) {
+        data[size] = value;
+        size = size + 1;
+    }
+
+    int pop() {
+        size = size - 1;
+        return data[size];
+    }
+}

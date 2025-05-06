@@ -1,7 +1,19 @@
 class Main {
-  static void main() {
-    ConstantExpression e;
-    new Main();
-    e = new ConstantExpression(42);
-  }
+    static void main() {
+        BinaryExpression[] arr;
+        arr = new BinaryExpression[10];
+        BinaryExpression e;
+        e = new BinaryExpression(
+            new ConstantExpression(42),
+            new AddOperator(),
+            new ConstantExpression(13)
+            );
+        arr[0] = e;
+        arr[3] = e;
+        ComputeVisitor v;
+        v = new ComputeVisitor();
+        e.accept(v);
+        int result;
+        result = v.getResult();
+    }
 }

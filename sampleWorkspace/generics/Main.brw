@@ -1,0 +1,10 @@
+class Main {
+    static void main() {
+        Base b3 = new Base();
+        Base b2 = new Derived();
+        Box<String> bs = new Box<String>("hi");
+        String s = bs.data.toString();
+        Box<Main> b = new Box<Main>(new Main());
+        Box.add(3);
+    }
+}

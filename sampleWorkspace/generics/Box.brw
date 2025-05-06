@@ -1,0 +1,21 @@
+class Box<E> {
+    E value;
+    E[] data;
+
+    void init(E value) {
+        this.value = value;
+        this.data = new E[10];
+    }
+
+    E get() {
+        return value;
+    }
+
+    void set(E value) {
+        this.value = value;
+    }
+
+    static int add(int value) {
+        return value + value;
+    }
+}
