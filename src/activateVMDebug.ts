@@ -5,6 +5,7 @@ import {
   ProviderResult,
   WorkspaceFolder,
 } from "vscode";
+import { MemoryViewProvider } from "./memoryViewProvider";
 
 export function activateVMDebug(context: vscode.ExtensionContext) {
   context.subscriptions.push(
@@ -68,6 +69,24 @@ export function activateVMDebug(context: vscode.ExtensionContext) {
       },
     })
   );
+
+  const memoryViewProvider = new MemoryViewProvider(context);
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider(
+      "memoryDumpView",
+      memoryViewProvider
+    )
+  );
+
+  vscode.debug.onDidTerminateDebugSession(() => {
+    memoryViewProvider.terminatedDebugSession();
+  });
+
+  vscode.debug.onDidReceiveDebugSessionCustomEvent((e) => {
+    if (e.event === "customStopped") {
+      memoryViewProvider.refresh();
+    }
+  });
 
   //   // override VS Code's default implementation of the "inline values" feature"
   //   context.subscriptions.push(

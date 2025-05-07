@@ -186,6 +186,20 @@
           }
         ]
       }
+    ],
+    "views": {
+      "debug": [
+        {
+          "id": "memoryDumpView",
+          "type": "webview",
+          "name": "Memory Viewer",
+          "when": "inDebugMode && debugType == vm",
+          "icon": "images/mock-debug-icon.png"
+        }
+      ]
+    },
+    "webviewResources": [
+      "media"
     ]
   }
 }

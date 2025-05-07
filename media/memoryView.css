@@ -1,0 +1,26 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    font-family: monospace;
+}
+
+.hex-dump {
+    white-space: pre;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.changed {
+    animation: flash 1s;
+    background-color: rgba(86, 156, 214, 0.3);
+}
+
+@keyframes flash {
+    0%   { background-color: rgba(86, 156, 214, 0); }
+    5%   { background-color: rgba(86, 156, 214, 0.9); }
+    100% { background-color: rgba(86, 156, 214, 0.3); }
+}
