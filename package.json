@@ -59,7 +59,10 @@
   "main": "./dist/extension.js",
   "browser": "./dist/web-extension.js",
   "activationEvents": [
-    "onDebugResolve:vm"
+    "onDebugResolve:vm",
+    "onLanguage:vmbrw",
+    "onLanguage:vmlang",
+    "onLanguage:vmasm"
   ],
   "workspaceTrust": {
     "request": "never"
@@ -179,7 +182,7 @@
               "type": "vm",
               "request": "launch",
               "name": "Debug VM file",
-              "projectName": "^\"\\${workspaceFolder}/main.vm\"",
+              "projectName": "\\${workspaceFolder}/main.vm",
               "port": 8888,
               "stopOnEntry": true
             }

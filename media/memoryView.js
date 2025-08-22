@@ -59,7 +59,7 @@ window.addEventListener('message', event => {
       }
 
       const label = (addr + lineOffset).toString(16).padStart(4, "0");
-      rows.push(`0x${label}: ${hex.join(" ")} ${ascii.join("")}`);
+      rows.push(`0x${label}: ${hex.slice(0, 2).join(" ")}  ${hex.slice(2, 4).join(" ")} ${ascii.join("")}`);
     }
 
     memoryDiv.innerHTML = rows.join('\n');

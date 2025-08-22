@@ -151,7 +151,12 @@ class VMDebugConfigurationProvider
     // if launch.json is missing or empty
     if (!config.type && !config.request && !config.name) {
       const editor = vscode.window.activeTextEditor;
-      if (editor && editor.document.languageId === "timkvm") {
+      if (
+        editor &&
+        (editor.document.languageId === "vmlang" ||
+          editor.document.languageId === "vmbrw" ||
+          editor.document.languageId === "vmasm")
+      ) {
         config.type = "vm";
         config.name = "Launch";
         config.request = "launch";
@@ -160,6 +165,9 @@ class VMDebugConfigurationProvider
         config.debugServer = 8888;
       }
     }
+
+    // Always set cwd for the DebugAdapter.
+    config.cwd = "${workspaceFolder}";
 
     return config;
   }
