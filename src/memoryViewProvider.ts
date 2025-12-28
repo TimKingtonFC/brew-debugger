@@ -107,6 +107,10 @@ export class MemoryViewProvider implements vscode.WebviewViewProvider {
       count: count,
     });
 
+    if (!result) {
+      return [];
+    }
+
     const buffer = Buffer.from(result.data, "base64");
     return [...buffer];
   }

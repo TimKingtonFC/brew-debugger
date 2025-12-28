@@ -7,10 +7,38 @@ import {
 } from "vscode";
 import { MemoryViewProvider } from "./memoryViewProvider";
 
+const MY_DEBUG_TYPE = "vm";
+
 export function activateVMDebug(context: vscode.ExtensionContext) {
+  const mySessions = new Set<string>();
+
+  const updateDebugSessionActive = () => {
+    vscode.commands.executeCommand(
+      "setContext",
+      "brew.debugSessionActive",
+      mySessions.size > 0
+    );
+  };
+  updateDebugSessionActive();
+
+  context.subscriptions.push(
+    vscode.debug.onDidStartDebugSession((s) => {
+      if (s.type === MY_DEBUG_TYPE) {
+        mySessions.add(s.id);
+        updateDebugSessionActive();
+      }
+    }),
+    vscode.debug.onDidTerminateDebugSession((s) => {
+      if (s.type === MY_DEBUG_TYPE) {
+        mySessions.delete(s.id);
+        updateDebugSessionActive();
+      }
+    })
+  );
+
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "extension.vm-debug.debugEditorContents",
+      "extension.brew-debugger.debugEditorContents",
       (resource: vscode.Uri) => {
         let targetResource = resource;
         if (!targetResource && vscode.window.activeTextEditor) {
@@ -41,34 +69,32 @@ export function activateVMDebug(context: vscode.ExtensionContext) {
   );
   context.subscriptions.push(factory);
 
-  // override VS Code's default implementation of the debug hover
-  // here we match only Mock "variables", that are words starting with an '$'
-  context.subscriptions.push(
-    vscode.languages.registerEvaluatableExpressionProvider("vmlang", {
-      provideEvaluatableExpression(
-        document: vscode.TextDocument,
-        position: vscode.Position
-      ): vscode.ProviderResult<vscode.EvaluatableExpression> {
-        const VARIABLE_REGEXP = /[a-z][a-z0-9]*/gi;
-        const line = document.lineAt(position.line).text;
+  // context.subscriptions.push(
+  //   vscode.languages.registerEvaluatableExpressionProvider("vmbrw", {
+  //     provideEvaluatableExpression(
+  //       document: vscode.TextDocument,
+  //       position: vscode.Position
+  //     ): vscode.ProviderResult<vscode.EvaluatableExpression> {
+  //       const VARIABLE_REGEXP = /[a-z][a-z0-9]*/gi;
+  //       const line = document.lineAt(position.line).text;
 
-        let m: RegExpExecArray | null;
-        while ((m = VARIABLE_REGEXP.exec(line))) {
-          const varRange = new vscode.Range(
-            position.line,
-            m.index,
-            position.line,
-            m.index + m[0].length
-          );
+  //       let m: RegExpExecArray | null;
+  //       while ((m = VARIABLE_REGEXP.exec(line))) {
+  //         const varRange = new vscode.Range(
+  //           position.line,
+  //           m.index,
+  //           position.line,
+  //           m.index + m[0].length
+  //         );
 
-          if (varRange.contains(position)) {
-            return new vscode.EvaluatableExpression(varRange);
-          }
-        }
-        return undefined;
-      },
-    })
-  );
+  //         if (varRange.contains(position)) {
+  //           return new vscode.EvaluatableExpression(varRange);
+  //         }
+  //       }
+  //       return undefined;
+  //     },
+  //   })
+  // );
 
   const memoryViewProvider = new MemoryViewProvider(context);
   context.subscriptions.push(

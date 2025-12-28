@@ -1,20 +1,31 @@
 {
-  "name": "vm-debug",
-  "displayName": "VM Debug",
-  "version": "0.1.0",
-  "publisher": "timk",
-  "description": "Debugger for VM programs",
+  "name": "brew-debugger",
+  "displayName": "Brew Debugger",
+  "version": "1.0.1",
+  "publisher": "TimKington",
+  "description": "Debugger for Brew programs",
   "author": {
     "name": "Tim Kington"
   },
-  "license": "MIT",
-  "keywords": [
-    "multi-root ready"
-  ],
   "engines": {
     "vscode": "^1.66.0"
   },
-  "icon": "images/mock-debug-icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TimKingtonFC/brew-debugger.git"
+  },
+  "homepage": "https://github.com/TimKingtonFC/brew-debugger#readme",
+  "bugs": {
+    "url": "https://github.com/TimKingtonFC/brew-debugger/issues"
+  },
+  "keywords": [
+    "challenge",
+    "programming",
+    "education",
+    "git"
+  ],
+  "license": "MIT",
+  "icon": "images/icon.png",
   "categories": [
     "Debuggers"
   ],
@@ -108,24 +119,24 @@
     "menus": {
       "editor/title/run": [
         {
-          "command": "extension.vm-debug.debugEditorContents",
+          "command": "extension.brew-debugger.debugEditorContents",
           "when": "resourceLangId == vmlang || resourceLangId == vmasm || resourceLangId == vmbrw",
           "group": "navigation@2"
         }
       ],
       "commandPalette": [
         {
-          "command": "extension.vm-debug.debugEditorContents",
+          "command": "extension.brew-debugger.debugEditorContents",
           "when": "resourceLangId == vmlang || resourceLangId == vmasm || resourceLangId == vmbrw"
         }
       ]
     },
     "commands": [
       {
-        "command": "extension.vm-debug.debugEditorContents",
+        "command": "extension.brew-debugger.debugEditorContents",
         "title": "Debug File",
         "category": "VM Debug",
-        "enablement": "!inDebugMode",
+        "enablement": "!brew.debugSessionActive",
         "icon": "$(debug-alt)"
       }
     ],
