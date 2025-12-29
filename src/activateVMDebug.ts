@@ -12,6 +12,14 @@ const MY_DEBUG_TYPE = "vm";
 export function activateVMDebug(context: vscode.ExtensionContext) {
   const mySessions = new Set<string>();
 
+  const memoryViewProvider = new MemoryViewProvider(context);
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider(
+      "memoryDumpView",
+      memoryViewProvider
+    )
+  );
+
   const updateDebugSessionActive = () => {
     vscode.commands.executeCommand(
       "setContext",
@@ -32,6 +40,8 @@ export function activateVMDebug(context: vscode.ExtensionContext) {
       if (s.type === MY_DEBUG_TYPE) {
         mySessions.delete(s.id);
         updateDebugSessionActive();
+
+        memoryViewProvider.terminatedDebugSession();
       }
     })
   );
@@ -95,18 +105,6 @@ export function activateVMDebug(context: vscode.ExtensionContext) {
   //     },
   //   })
   // );
-
-  const memoryViewProvider = new MemoryViewProvider(context);
-  context.subscriptions.push(
-    vscode.window.registerWebviewViewProvider(
-      "memoryDumpView",
-      memoryViewProvider
-    )
-  );
-
-  vscode.debug.onDidTerminateDebugSession(() => {
-    memoryViewProvider.terminatedDebugSession();
-  });
 
   vscode.debug.onDidReceiveDebugSessionCustomEvent((e) => {
     if (e.event === "customStopped") {
