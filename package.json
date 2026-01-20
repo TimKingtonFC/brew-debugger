@@ -1,7 +1,7 @@
 {
   "name": "brew-debugger",
   "displayName": "Brew Debugger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "TimKington",
   "description": "Debugger for Brew programs",
   "author": {

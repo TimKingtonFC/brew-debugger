@@ -39,8 +39,8 @@
       "match": "\\b(0x[0-9A-Fa-f]+|\\d+)\\b"
     },
     "comments": {
-      "name": "comment.line.number-sign",
-      "match": "#.*$"
+      "name": "comment.line.semicolon",
+      "match": ";.*$"
     },
     "strings": {
       "name": "string.quoted.double",
